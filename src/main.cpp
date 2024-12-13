@@ -1,89 +1,101 @@
 #include <Arduino.h>
-int ButtonPin = 15;
-int LedPin[] = {23, 19, 18, 16, 4, 0,};
-
-// put function declarations here:
-//int myFunction(int, int);
+int LED_PIN1 = 23;
+int LED_PIN2 = 19;
+int LED_PIN3 = 18;
+int LED_PIN4 = 5;
+int LED_PIN5 = 17;
+int LED_PIN6 = 16;
+int LED_PIN7 = 4;
+int LED_PIN8 = 0;
+int potPin= 36;
 
 void setup() {
-  // put your setup code here, to run once:
-  //int result = myFunction(2, 3);
-  /*
-  pinMode(23, OUTPUT);
-  pinMode(19, OUTPUT);
-  pinMode(18, OUTPUT);
-  pinMode(16, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(0, OUTPUT);
-  */
-  pinMode(ButtonPin, INPUT_PULLUP);
-  for (int i =0; i < 8; i++){
-    pinMode(LedPin[i], OUTPUT);
-  }
-  
-  //pinMode(4, OUTPUT);
-  //pinMode(0, OUTPUT);
+
+    pinMode(LED_PIN1, OUTPUT);
+    pinMode(LED_PIN2, OUTPUT);
+    pinMode(LED_PIN3, OUTPUT);
+    pinMode(LED_PIN4, OUTPUT);
+    pinMode(LED_PIN5, OUTPUT);
+    pinMode(LED_PIN6, OUTPUT);
+    pinMode(LED_PIN7, OUTPUT);
+    pinMode(LED_PIN8, OUTPUT);
 
 }
-int a = 0;
+
 void loop() {
-while(a == 0){
-  digitalWrite(LedPin[0],HIGH);
-  digitalWrite(LedPin[1],LOW);
-  digitalWrite(LedPin[2],LOW);
-  
-  digitalWrite(LedPin[3],LOW);
-  digitalWrite(LedPin[4],LOW);
-  digitalWrite(LedPin[5],HIGH);
-  delay(1000);
 
-  digitalWrite(LedPin[0],HIGH);
-  digitalWrite(LedPin[1],LOW);
-  digitalWrite(LedPin[2],LOW);
+    int potValue = analogRead(potPin); 
+    int dutyCycle = map(potValue, 0, 4095, 0, 4000);
 
-  digitalWrite(LedPin[3],LOW);
-  digitalWrite(LedPin[4],HIGH);
-  digitalWrite(LedPin[5],LOW);
-  delay(1000);
+        digitalWrite(LED_PIN1, LOW); 
+        digitalWrite(LED_PIN2, LOW);
+        digitalWrite(LED_PIN3, LOW);
+        digitalWrite(LED_PIN4, LOW);
+        digitalWrite(LED_PIN5, LOW);
+        digitalWrite(LED_PIN6, LOW);
+        digitalWrite(LED_PIN7, LOW);
+        digitalWrite(LED_PIN8, LOW);
 
-  digitalWrite(LedPin[0],LOW);
-  digitalWrite(LedPin[1],LOW);
-  digitalWrite(LedPin[2],HIGH);
 
-  digitalWrite(LedPin[3],HIGH);
-  digitalWrite(LedPin[4],LOW);
-  digitalWrite(LedPin[5],LOW);
-  delay(1000);
+    if (dutyCycle >= 0 && dutyCycle < 500 ) {
 
-  digitalWrite(LedPin[0],LOW);
-  digitalWrite(LedPin[1],HIGH);
-  digitalWrite(LedPin[2],LOW);
+        digitalWrite(LED_PIN1, HIGH); 
+        digitalWrite(LED_PIN2, LOW);
+        digitalWrite(LED_PIN3, LOW);
+        digitalWrite(LED_PIN4, LOW);
+        digitalWrite(LED_PIN5, LOW);
+        digitalWrite(LED_PIN6, LOW);
+        digitalWrite(LED_PIN7, LOW);
+        digitalWrite(LED_PIN8, LOW);
 
-  digitalWrite(LedPin[3],HIGH);
-  digitalWrite(LedPin[4],LOW);
-  digitalWrite(LedPin[5],LOW);
-  delay(1000);
-while(digitalRead(ButtonPin)==HIGH) a =1;
-  }
-  
-  while(a == 1){
-    digitalWrite(LedPin[0],LOW);
-    digitalWrite(LedPin[1],LOW);
-    digitalWrite(LedPin[2],LOW);
-  
-    digitalWrite(LedPin[3],LOW);
-    digitalWrite(LedPin[4],LOW);
-    digitalWrite(LedPin[5],LOW);
-    delay(1000);
 
-    digitalWrite(LedPin[0],HIGH);
-    digitalWrite(LedPin[1],HIGH);
-    digitalWrite(LedPin[2],HIGH);
-  
-    digitalWrite(LedPin[3],HIGH);
-    digitalWrite(LedPin[4],HIGH);
-    digitalWrite(LedPin[5],HIGH);
-    delay(1000);
-    while(digitalRead(ButtonPin)==HIGH) a =0;
+    } else if (dutyCycle >= 500 && dutyCycle < 1000 ) {
+        digitalWrite(LED_PIN1, HIGH); 
+        digitalWrite(LED_PIN2, HIGH);
+        digitalWrite(LED_PIN3, HIGH);
+        digitalWrite(LED_PIN4, LOW);
+        digitalWrite(LED_PIN5, LOW);
+        digitalWrite(LED_PIN6, LOW);
+        digitalWrite(LED_PIN7, LOW);
+        digitalWrite(LED_PIN8, LOW);
+      
+
+    } else if (dutyCycle >= 1000 && dutyCycle < 2000 ) {
+
+        digitalWrite(LED_PIN1, HIGH); 
+        digitalWrite(LED_PIN2, HIGH);
+        digitalWrite(LED_PIN3, HIGH);
+        digitalWrite(LED_PIN4, HIGH);
+        digitalWrite(LED_PIN5, HIGH);
+        digitalWrite(LED_PIN6, LOW);
+        digitalWrite(LED_PIN7, LOW);
+        digitalWrite(LED_PIN8, LOW);
+
+   
+    }else if (dutyCycle >= 1500 && dutyCycle < 2000 ) {
+
+        digitalWrite(LED_PIN1, HIGH); 
+        digitalWrite(LED_PIN2, HIGH);
+        digitalWrite(LED_PIN3, HIGH);
+        digitalWrite(LED_PIN4, HIGH);
+        digitalWrite(LED_PIN5, HIGH);
+        digitalWrite(LED_PIN6, HIGH);
+        digitalWrite(LED_PIN7, LOW);
+        digitalWrite(LED_PIN8, LOW);
+
+   
+    }else if (dutyCycle > 2000) {
+
+        digitalWrite(LED_PIN1, HIGH); 
+        digitalWrite(LED_PIN2, HIGH);
+        digitalWrite(LED_PIN3, HIGH);
+        digitalWrite(LED_PIN4, HIGH);
+        digitalWrite(LED_PIN5, HIGH);
+        digitalWrite(LED_PIN6, HIGH);
+        digitalWrite(LED_PIN7, HIGH);
+        digitalWrite(LED_PIN8, HIGH);
+
+   
     }
-  }
+
+}
